@@ -1,0 +1,59 @@
+# -- build
+
+[build-system]
+requires = [
+  "setuptools>=61",
+  "setuptools_scm[toml]>=3.4.3",
+  "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlsel"
+description = "A python package for modelling selection effects with machine learning"
+readme = "README.md"
+authors = [
+  { name = "Christian Chapman-Bird", email = "c.chapman-bird.1@research.gla.ac.uk" },
+]
+license = { text = "GPL-3.0-or-later" }
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Astronomy",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+
+# requirements
+requires-python = ">=3.7"
+dependencies = [
+  "matplotlib >=3.3.0",
+  "seaborn",
+  "numpy >=1.17",
+  "scipy >=1.2.0",
+  "tqdm",
+  "dill",
+  "pathlib",
+  "torch>=1.7.0",
+]
+
+# dynamic properties set by tools
+dynamic = [
+  "version",
+]
+
+[project.urls]
+"Bug Tracker" = "https://github.com/CChapmanbird/ML_selection_biases/issues"
+"Source Code" = "https://github.com/CChapmanbird/ML_selection_biases"
+
+[tool.setuptools]
+license-files = [ "LICENSE" ]
