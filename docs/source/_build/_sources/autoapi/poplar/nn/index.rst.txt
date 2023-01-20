@@ -1,8 +1,29 @@
-:orphan:
-
 :py:mod:`poplar.nn`
 ===================
 
 .. py:module:: poplar.nn
+
+.. autoapi-nested-parse::
+
+   
+   Tools for creating and training simple multi-layer perceptron neural networks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 

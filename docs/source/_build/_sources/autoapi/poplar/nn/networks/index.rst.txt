@@ -211,18 +211,13 @@ Functions
           **\*\*kwargs**
               Keyword arguments passed to run_on_dataset.
 
-          **Returns**
-              ..
+      :Returns:
 
-          **-------**
-              ..
-
-          **accuracy: double**
+          accuracy: double
               Accuracy of the network, normalised to [0,1].
 
-          **confmat: torch.Tensor (only returned if confusion_matrix is True)**
+          confmat: torch.Tensor (only returned if confusion_matrix is True)
               Confusion matrix of the network output over the two classes (below threshold, above threshold).
-
 
 
 
@@ -245,14 +240,19 @@ Functions
    
    Load an existing `LinearModel` from file.
 
-   Args:
-       path (str): Path to `.pkl` file to be loaded.
-       device (str, optional): The PyTorch device to load the model to. Defaults to "cpu".).
 
-   Returns:
-       LinearModel: Loaded LinearModel.
+   :Parameters:
 
+       **path** : str
+           Path to `.pkl` file to be loaded.
 
+       **device** : str, optional
+           The PyTorch device to load the model to, by default "cpu"
+
+   :Returns:
+
+       LinearModel
+           Loaded LinearModel.
 
 
 

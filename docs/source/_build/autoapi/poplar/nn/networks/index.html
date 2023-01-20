@@ -285,11 +285,13 @@
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments passed to run_on_dataset.</p>
 </dd>
-<dt><strong>Returns</strong></dt><dd></dd>
-<dt><strong>——-</strong></dt><dd></dd>
-<dt><strong>accuracy: double</strong></dt><dd><p>Accuracy of the network, normalised to [0,1].</p>
+</dl>
 </dd>
-<dt><strong>confmat: torch.Tensor (only returned if confusion_matrix is True)</strong></dt><dd><p>Confusion matrix of the network output over the two classes (below threshold, above threshold).</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>accuracy: double</dt><dd><p>Accuracy of the network, normalised to [0,1].</p>
+</dd>
+<dt>confmat: torch.Tensor (only returned if confusion_matrix is True)</dt><dd><p>Confusion matrix of the network output over the two classes (below threshold, above threshold).</p>
 </dd>
 </dl>
 </dd>
@@ -302,11 +304,20 @@
 <dt class="sig sig-object py" id="poplar.nn.networks.load_model">
 <span class="sig-prename descclassname"><span class="pre">poplar.nn.networks.</span></span><span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#poplar.nn.networks.LinearModel" title="poplar.nn.networks.LinearModel"><span class="pre">LinearModel</span></a></span></span><a class="headerlink" href="#poplar.nn.networks.load_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load an existing <cite>LinearModel</cite> from file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>path (str): Path to <cite>.pkl</cite> file to be loaded.
-device (str, optional): The PyTorch device to load the model to. Defaults to “cpu”.).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path to <cite>.pkl</cite> file to be loaded.</p>
 </dd>
-<dt>Returns:</dt><dd><p>LinearModel: Loaded LinearModel.</p>
+<dt><strong>device</strong><span class="classifier">str, optional</span></dt><dd><p>The PyTorch device to load the model to, by default “cpu”</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>LinearModel</dt><dd><p>Loaded LinearModel.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
