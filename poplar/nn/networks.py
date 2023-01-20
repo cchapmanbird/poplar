@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torch.nn.init import xavier_uniform_
 import dill as pickle
 import numpy as np
 from .rescaling import IdentityRescaler
@@ -33,13 +32,13 @@ class LinearModel(nn.Module):
     out_activation : _type_, optional
         Activation function for the output layer, by default None
     initialisation : _type_, optional
-        Function for setting the initial weights of all neurons, by default xavier_uniform_
+        Function for setting the initial weights of all neurons, by default uses xavier_uniform rescaling
     dropout : float, optional
         Sets the dropout probability for all layers, by default 0 (no dropout).
     batch_norm : bool, optional
         If True, enables batch normalisation between layers, by default False
     """
-    def __init__(self, in_features: int, out_features: int, neurons: list, activation: Any, name="model", device="cpu", rescaler=None, out_activation=None, initialisation=xavier_uniform_, dropout=0., batch_norm=False):
+    def __init__(self, in_features: int, out_features: int, neurons: list, activation: Any, name="model", device="cpu", rescaler=None, out_activation=None, initialisation=None, dropout=0., batch_norm=False):
         super().__init__()
             
         self.initial = initialisation
@@ -47,6 +46,10 @@ class LinearModel(nn.Module):
         if rescaler is None:
             rescaler = IdentityRescaler()
         self.rescaler = rescaler
+        if initialisation is None:
+            initialisation = torch.nn.init.xavier_uniform_
+        self.initialisation = initialisation
+
         n_layers = len(neurons)
 
         layers = [nn.Linear(in_features, neurons[0]), activation()]

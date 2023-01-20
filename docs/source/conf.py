@@ -22,15 +22,12 @@ release = poplar.__version__
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.napoleon',
     'numpydoc',
     'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'autoapi.extension',
 ]
-
-autosummary_generate = True
 
 templates_path = ['_templates']
 exclude_patterns = []

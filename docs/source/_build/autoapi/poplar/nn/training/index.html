@@ -83,7 +83,7 @@
             
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API reference</a></li>
 </ul>
 
             
@@ -172,21 +172,34 @@ and a command line output indicating current progress.</p>
 <p>If you need more complex functionality, it is advisable to write your own training function using this as a starting point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<a class="reference internal" href="../networks/index.html#poplar.nn.networks.LinearModel" title="poplar.nn.networks.LinearModel"><em>LinearModel</em></a>) – Instance of LinearModel to be trained.</p></li>
-<li><p><strong>data</strong> (<em>list</em>) – List of torch.Tensors for the training data, training labels, testing data and testing labels respectively.</p></li>
-<li><p><strong>n_epochs</strong> (<em>int</em>) – Number of epochs to train for.</p></li>
-<li><p><strong>n_batches</strong> (<em>int</em>) – Number of batches per epoch.</p></li>
-<li><p><strong>loss_function</strong> (<em>Any</em>) – Loss function to use. It is recommended to use one of the pytorch loss functions (<a class="reference external" href="https://pytorch.org/docs/stable/nn.html#loss-functions">https://pytorch.org/docs/stable/nn.html#loss-functions</a>)</p></li>
-<li><p><strong>optimiser</strong> (<em>Any</em><em>, </em><em>optional</em>) – The pytorch optimiser to use, by default the Adam optimiser with a learning rate of 1e-3 is used. This should be instantiated before passing to this function.</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, also displays training progress on the command line. By default False</p></li>
-<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, loss curves are regularly produced (with interval update_every) and saved in the model directory, by default True</p></li>
-<li><p><strong>update_every</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of epochs between updating the saved model and plotting diagnostic data, by default 1</p></li>
-<li><p><strong>n_test_batches</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of batches to run the testing data in, by default n_batches</p></li>
-<li><p><strong>save_best</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, saves the network that achieved the lowest validation losses, by default False</p></li>
-<li><p><strong>scheduler</strong> (<em>Any</em><em>, </em><em>optional</em>) – pytorch scheduler to use for learning rate adjustment during training, by default None</p></li>
-<li><p><strong>outdir</strong> (<em>str</em><em>, </em><em>optional</em>) – Output directory for the trained model directory, by default ‘models’</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model</strong><span class="classifier">LinearModel</span></dt><dd><p>Instance of LinearModel to be trained.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">list</span></dt><dd><p>List of torch.Tensors for the training data, training labels, testing data and testing labels respectively.</p>
+</dd>
+<dt><strong>n_epochs</strong><span class="classifier">int</span></dt><dd><p>Number of epochs to train for.</p>
+</dd>
+<dt><strong>n_batches</strong><span class="classifier">int</span></dt><dd><p>Number of batches per epoch.</p>
+</dd>
+<dt><strong>loss_function</strong><span class="classifier">Any</span></dt><dd><p>Loss function to use. It is recommended to use one of the pytorch loss functions (<a class="reference external" href="https://pytorch.org/docs/stable/nn.html#loss-functions">https://pytorch.org/docs/stable/nn.html#loss-functions</a>)</p>
+</dd>
+<dt><strong>optimiser</strong><span class="classifier">Any, optional</span></dt><dd><p>The pytorch optimiser to use, by default the Adam optimiser with a learning rate of 1e-3 is used. This should be instantiated before passing to this function.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, also displays training progress on the command line. By default False</p>
+</dd>
+<dt><strong>plot</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, loss curves are regularly produced (with interval update_every) and saved in the model directory, by default True</p>
+</dd>
+<dt><strong>update_every</strong><span class="classifier">int, optional</span></dt><dd><p>Number of epochs between updating the saved model and plotting diagnostic data, by default 1</p>
+</dd>
+<dt><strong>n_test_batches</strong><span class="classifier">int, optional</span></dt><dd><p>Number of batches to run the testing data in, by default n_batches</p>
+</dd>
+<dt><strong>save_best</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, saves the network that achieved the lowest validation losses, by default False</p>
+</dd>
+<dt><strong>scheduler</strong><span class="classifier">Any, optional</span></dt><dd><p>pytorch scheduler to use for learning rate adjustment during training, by default None</p>
+</dd>
+<dt><strong>outdir</strong><span class="classifier">str, optional</span></dt><dd><p>Output directory for the trained model directory, by default ‘models’</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -198,18 +211,22 @@ and a command line output indicating current progress.</p>
 switching and dtype casting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>torch.tensor</em><em> or </em><em>numpy.ndarray</em>) – The data to be split.</p></li>
-<li><p><strong>ratio</strong> (<em>int</em>) – The ratio between the sizes of the two output tensors along their first axis.</p></li>
-<li><p><strong>device</strong> (<em>str</em><em>, </em><em>optional</em>) – device to move tensors to, by default “cpu”</p></li>
-<li><p><strong>dtype</strong> (<em>optional</em>) – data type of output tensors, by default torch.float64</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">torch.tensor or numpy.ndarray</span></dt><dd><p>The data to be split.</p>
+</dd>
+<dt><strong>ratio</strong><span class="classifier">int</span></dt><dd><p>The ratio between the sizes of the two output tensors along their first axis.</p>
+</dd>
+<dt><strong>device</strong><span class="classifier">str, optional</span></dt><dd><p>device to move tensors to, by default “cpu”</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">optional</span></dt><dd><p>data type of output tensors, by default torch.float64</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of the two split tensors.</p>
+<dd class="field-even"><dl class="simple">
+<dt>list of tensors</dt><dd><p>A list of the two split tensors.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of tensors</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>

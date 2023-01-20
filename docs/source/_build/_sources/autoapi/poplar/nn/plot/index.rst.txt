@@ -21,16 +21,38 @@ Functions
 
 .. py:function:: loss_plot(train_losses: list, test_losses: list, filename=None)
 
+   
    Simple plot routine for producing a loss curve
 
-   :param train_losses: List of training data losses
-   :type train_losses: list
-   :param test_losses: List of testing data losses
-   :type test_losses: list
-   :param filename: Output string for the loss curve figure, by default None (in which case, the figure is returned).
-   :type filename: str, optional
 
-   :returns: The loss curve matplotlib figure.
-   :rtype: fig (only returned if filename is None)
+   :Parameters:
 
+       **train_losses** : list
+           List of training data losses
+
+       **test_losses** : list
+           List of testing data losses
+
+       **filename** : str, optional
+           Output string for the loss curve figure, by default None (in which case, the figure is returned).
+
+   :Returns:
+
+       fig (only returned if filename is None)
+           The loss curve matplotlib figure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

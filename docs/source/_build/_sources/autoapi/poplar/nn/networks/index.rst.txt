@@ -27,104 +27,245 @@ Functions
 
 
 
-.. py:class:: LinearModel(in_features: int, out_features: int, neurons: list, activation: Any, name='model', device='cpu', rescaler=None, out_activation=None, initialisation=xavier_uniform_, dropout=0.0, batch_norm=False)
+.. py:class:: LinearModel(in_features: int, out_features: int, neurons: list, activation: Any, name='model', device='cpu', rescaler=None, out_activation=None, initialisation=None, dropout=0.0, batch_norm=False)
 
    Bases: :py:obj:`torch.nn.Module`
 
-   LinearModel class implementing a standard multi-layer perceptron with some convenience features for function approximation use.
+   
+   LinearModel class implementing a standard multi-layer perceptron with some convenience features for function approximation use. 
 
    This is a subclass of `torch.nn.Module`.
 
-   :param in_features: Number of features for the input layer of the model.
-   :type in_features: int
-   :param out_features: Number of features for the output layer of the model.
-   :type out_features: int
-   :param neurons: A list containing the number of neurons in each layer of the model (excluding input/output).
-   :type neurons: list
-   :param activation: The activation function to be used for each hidden layer.
-   :type activation: Any
-   :param name: A name for the model, used for file naming. Defaults to "model".
-   :type name: str, optional
-   :param device: pytorch device to initialise the model to, by default "cpu"
-   :type device: str, optional
-   :param rescaler: An object for rescaling inputs/outputs. by default `IdentityRescaler` (see `mlsel.nn.rescaling.py` for examples)
-   :type rescaler: _type_, optional
-   :param out_activation: Activation function for the output layer, by default None
-   :type out_activation: _type_, optional
-   :param initialisation: Function for setting the initial weights of all neurons, by default xavier_uniform_
-   :type initialisation: _type_, optional
-   :param dropout: Sets the dropout probability for all layers, by default 0 (no dropout).
-   :type dropout: float, optional
-   :param batch_norm: If True, enables batch normalisation between layers, by default False
-   :type batch_norm: bool, optional
+   :Parameters:
 
+       **in_features** : int
+           Number of features for the input layer of the model.
+
+       **out_features** : int
+           Number of features for the output layer of the model.
+
+       **neurons** : list
+           A list containing the number of neurons in each layer of the model (excluding input/output).
+
+       **activation** : Any
+           The activation function to be used for each hidden layer.
+
+       **name** : str, optional
+           A name for the model, used for file naming. Defaults to "model".
+
+       **device** : str, optional
+           pytorch device to initialise the model to, by default "cpu"
+
+       **rescaler** : _type_, optional
+           An object for rescaling inputs/outputs. by default `IdentityRescaler` (see `mlsel.nn.rescaling.py` for examples)
+
+       **out_activation** : _type_, optional
+           Activation function for the output layer, by default None
+
+       **initialisation** : _type_, optional
+           Function for setting the initial weights of all neurons, by default uses xavier_uniform rescaling
+
+       **dropout** : float, optional
+           Sets the dropout probability for all layers, by default 0 (no dropout).
+
+       **batch_norm** : bool, optional
+           If True, enables batch normalisation between layers, by default False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: forward(x: torch.Tensor)
 
+      
       Computes the output for a set of inputs, and removes extra dimensions in the output.
 
-      :param x: The input tensor to the model.
-      :type x: torch.Tensor
 
-      :returns: The resulting output tensor, with no dimensions of size 1.
-      :rtype: torch.Tensor
+      :Parameters:
 
+          **x** : torch.Tensor
+              The input tensor to the model.
+
+      :Returns:
+
+          torch.Tensor
+              The resulting output tensor, with no dimensions of size 1.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
    .. py:method:: save(outdir: str)
 
+      
       Saves the model to a pickle file for reloading later.
 
-      :param outdir: Output file directory in which to place the model directory.
-      :type outdir: str
 
+      :Parameters:
+
+          **outdir** : str
+              Output file directory in which to place the model directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
    .. py:method:: run_on_dataset(inputs: torch.Tensor, n_batches=1, luminosity_distances=None, runtime=False)
 
+      
       Run this model on a set of inputs, applying all necessary rescalings and transformations.
 
       If the output is distance-normalised, luminosity distances can also be provided to convert these into unnormalised values.
 
-      :param inputs: Input tensor to run through the model.
-      :type inputs: torch.Tensor
-      :param n_batches: Number of batches to process the input data in, by default 1 (the entire dataset)
-      :type n_batches: int, optional
-      :param luminosity_distances: Set of luminosity distance values to multiply the output data by, by default None
-      :type luminosity_distances: torch.Tensor, optional
-      :param runtime: If True, returns timing statistics. By default False
-      :type runtime: bool, optional
+      :Parameters:
 
-      :returns: * **output** (*torch.Tensor*) -- The output of the model after reversing the input scalings.
-                * **timings** (*list (only returned if runtime is True)*) -- The time taken for the network [in total, per_datapoint].
+          **inputs** : torch.Tensor
+              Input tensor to run through the model.
 
+          **n_batches** : int, optional
+              Number of batches to process the input data in, by default 1 (the entire dataset)
+
+          **luminosity_distances** : torch.Tensor, optional
+              Set of luminosity distance values to multiply the output data by, by default None
+
+          **runtime** : bool, optional
+              If True, returns timing statistics. By default False
+
+      :Returns:
+
+          output: torch.Tensor
+              The output of the model after reversing the input scalings.
+
+          timings: list (only returned if runtime is True)
+              The time taken for the network [in total, per_datapoint].
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
    .. py:method:: test_threshold_accuracy(xdata: torch.Tensor, ydata: torch.Tensor, threshold: float, confusion_matrix=False, **run_kwargs)
 
+      
       _summary_
 
-      :param xdata: Set of input (target) data to be processed by the network.
-      :type xdata: torch.Tensor
-      :param ydata: Set of true values to compare the network output with.
-      :type ydata: torch.Tensor
-      :param threshold: A threshold value with which to compare the accuracy of each network when operating as a classifier (i.e. 0: below threshold, 1: above threshold)
-      :type threshold: float
-      :param confusion_matrix: If True, outputs the result in confusion matrix format. By default False
-      :type confusion_matrix: bool, optional
-      :param \*\*kwargs: Keyword arguments passed to run_on_dataset.
 
-      :returns: * **accuracy** (*double*) -- Accuracy of the network, normalised to [0,1].
-                * **confmat** (*torch.Tensor (only returned if confusion_matrix is True)*) -- Confusion matrix of the network output over the two classes (below threshold, above threshold).
+      :Parameters:
 
+          **xdata** : torch.Tensor
+              Set of input (target) data to be processed by the network.
+
+          **ydata** : torch.Tensor
+              Set of true values to compare the network output with.
+
+          **threshold** : float
+              A threshold value with which to compare the accuracy of each network when operating as a classifier (i.e. 0: below threshold, 1: above threshold)
+
+          **confusion_matrix** : bool, optional
+              If True, outputs the result in confusion matrix format. By default False
+
+          **\*\*kwargs**
+              Keyword arguments passed to run_on_dataset.
+
+          **Returns**
+              ..
+
+          **-------**
+              ..
+
+          **accuracy: double**
+              Accuracy of the network, normalised to [0,1].
+
+          **confmat: torch.Tensor (only returned if confusion_matrix is True)**
+              Confusion matrix of the network output over the two classes (below threshold, above threshold).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
 
 .. py:function:: load_model(path: str, device='cpu') -> LinearModel
 
+   
    Load an existing `LinearModel` from file.
 
-   :param path: Path to `.pkl` file to be loaded.
-   :type path: str
-   :param device: The PyTorch device to load the model to. Defaults to "cpu".).
-   :type device: str, optional
+   Args:
+       path (str): Path to `.pkl` file to be loaded.
+       device (str, optional): The PyTorch device to load the model to. Defaults to "cpu".).
 
-   :returns: Loaded LinearModel.
-   :rtype: LinearModel
+   Returns:
+       LinearModel: Loaded LinearModel.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

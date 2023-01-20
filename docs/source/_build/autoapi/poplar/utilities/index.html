@@ -84,7 +84,7 @@
             
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">API reference</a></li>
 </ul>
 
             
@@ -178,17 +178,20 @@ given discrete data points <span class="math notranslate nohighlight">\((xp, fp)
 <p>From <a class="reference external" href="https://github.com/pytorch/pytorch/issues/50334#issuecomment-1247611276">https://github.com/pytorch/pytorch/issues/50334#issuecomment-1247611276</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>torch.Tensor</em>) – the <span class="math notranslate nohighlight">\(x\)</span>-coordinates at which to evaluate the interpolated values.</p></li>
-<li><p><strong>xp</strong> (<em>torch.Tensor</em>) – the <span class="math notranslate nohighlight">\(x\)</span>-coordinates of the data points, must be increasing.</p></li>
-<li><p><strong>fp</strong> (<em>torch.Tensor</em>) – the <span class="math notranslate nohighlight">\(y\)</span>-coordinates of the data points, same length as <cite>xp</cite>.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">torch.Tensor</span></dt><dd><p>the <span class="math notranslate nohighlight">\(x\)</span>-coordinates at which to evaluate the interpolated values.</p>
+</dd>
+<dt><strong>xp</strong><span class="classifier">torch.Tensor</span></dt><dd><p>the <span class="math notranslate nohighlight">\(x\)</span>-coordinates of the data points, must be increasing.</p>
+</dd>
+<dt><strong>fp</strong><span class="classifier">torch.Tensor</span></dt><dd><p>the <span class="math notranslate nohighlight">\(y\)</span>-coordinates of the data points, same length as <cite>xp</cite>.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the interpolated values, same size as <cite>x</cite></p>
+<dd class="field-even"><dl class="simple">
+<dt>torch.Tensor</dt><dd><p>the interpolated values, same size as <cite>x</cite></p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -202,17 +205,20 @@ a non-central chi-square distribution.</p>
 The outputs will be on the same device as the inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>optimal_snr</strong> (<em>np.ndarray</em><em> or </em><em>torch.tensor</em>) – Optimal snr values to convert into detection probabilities.</p></li>
-<li><p><strong>threshold</strong> (<em>float</em>) – The detection threshold.</p></li>
-<li><p><strong>number_of_detectors</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of detectors in use, by default 1</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>optimal_snr</strong><span class="classifier">np.ndarray or torch.tensor</span></dt><dd><p>Optimal snr values to convert into detection probabilities.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float</span></dt><dd><p>The detection threshold.</p>
+</dd>
+<dt><strong>number_of_detectors</strong><span class="classifier">int, optional</span></dt><dd><p>The number of detectors in use, by default 1</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>detection_probabilities</strong> – The resuling detection probablities for the given detection threshold.</p>
+<dd class="field-even"><dl class="simple">
+<dt>detection_probabilities: np.ndarray or torch.tensor</dt><dd><p>The resuling detection probablities for the given detection threshold.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray or torch.tensor</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -226,17 +232,20 @@ a non-central chi-square distribution.</p>
 The outputs will be on the same device as the inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>optimal_snr</strong> (<em>np.ndarray</em><em> or </em><em>torch.tensor</em>) – Optimal snr values to convert into detection probabilities.</p></li>
-<li><p><strong>threshold</strong> (<em>float</em>) – The detection threshold.</p></li>
-<li><p><strong>number_of_detectors</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of detectors in use, by default 1</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>optimal_snr</strong><span class="classifier">np.ndarray or torch.tensor</span></dt><dd><p>Optimal snr values to convert into detection probabilities.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float</span></dt><dd><p>The detection threshold.</p>
+</dd>
+<dt><strong>number_of_detectors</strong><span class="classifier">int, optional</span></dt><dd><p>The number of detectors in use, by default 1</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>selection function</strong> – The resuling selection function for the given detection threshold.</p>
+<dd class="field-even"><dl class="simple">
+<dt>selection function: np.ndarray or torch.tensor</dt><dd><p>The resuling selection function for the given detection threshold.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray or torch.tensor</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>

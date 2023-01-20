@@ -10,7 +10,7 @@ Welcome to poplar's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   api
+   API reference </autoapi/poplar/index>
 
 
 .. toctree::

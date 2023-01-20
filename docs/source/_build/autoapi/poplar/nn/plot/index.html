@@ -83,7 +83,7 @@
             
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API reference</a></li>
 </ul>
 
             
@@ -167,17 +167,20 @@
 <dd><p>Simple plot routine for producing a loss curve</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>train_losses</strong> (<em>list</em>) – List of training data losses</p></li>
-<li><p><strong>test_losses</strong> (<em>list</em>) – List of testing data losses</p></li>
-<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Output string for the loss curve figure, by default None (in which case, the figure is returned).</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>train_losses</strong><span class="classifier">list</span></dt><dd><p>List of training data losses</p>
+</dd>
+<dt><strong>test_losses</strong><span class="classifier">list</span></dt><dd><p>List of testing data losses</p>
+</dd>
+<dt><strong>filename</strong><span class="classifier">str, optional</span></dt><dd><p>Output string for the loss curve figure, by default None (in which case, the figure is returned).</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The loss curve matplotlib figure.</p>
+<dd class="field-even"><dl class="simple">
+<dt>fig (only returned if filename is None)</dt><dd><p>The loss curve matplotlib figure.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>fig (only returned if filename is None)</p>
+</dl>
 </dd>
 </dl>
 </dd></dl>
