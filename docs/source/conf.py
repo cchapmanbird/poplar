@@ -23,6 +23,7 @@ release = poplar.__version__
 
 extensions = [
     'sphinx.ext.napoleon',
+    'numpydoc',
     'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
