@@ -179,6 +179,7 @@ class LinearModel(nn.Module):
             If True, outputs the result in confusion matrix format. By default False
         **kwargs
             Keyword arguments passed to run_on_dataset.
+
         Returns
         -------
         accuracy: double
@@ -207,12 +208,17 @@ class LinearModel(nn.Module):
 def load_model(path: str, device="cpu") -> LinearModel:
     """Load an existing `LinearModel` from file.
 
-    Args:
-        path (str): Path to `.pkl` file to be loaded.
-        device (str, optional): The PyTorch device to load the model to. Defaults to "cpu".).
+    Parameters
+    ----------
+    path : str
+        Path to `.pkl` file to be loaded.
+    device : str, optional
+        The PyTorch device to load the model to, by default "cpu"
 
-    Returns:
-        LinearModel: Loaded LinearModel.
+    Returns
+    -------
+    LinearModel
+        Loaded LinearModel.
     """
     with open(path, 'rb') as pickle_file:
         model = pickle.load(pickle_file)
