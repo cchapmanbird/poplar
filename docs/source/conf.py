@@ -7,7 +7,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'MLSel'
+project = 'poplar'
 copyright = '2023, Christian Chapman-Bird'
 author = 'Christian Chapman-Bird'
 release = '0.1'

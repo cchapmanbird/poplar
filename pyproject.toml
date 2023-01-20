@@ -9,7 +9,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mlsel"
+name = "poplar"
 description = "A python package for modelling selection effects with machine learning"
 readme = "README.md"
 authors = [
@@ -52,8 +52,8 @@ dynamic = [
 ]
 
 [project.urls]
-"Bug Tracker" = "https://github.com/CChapmanbird/ML_selection_biases/issues"
-"Source Code" = "https://github.com/CChapmanbird/ML_selection_biases"
+"Bug Tracker" = "https://github.com/CChapmanbird/poplar/issues"
+"Source Code" = "https://github.com/CChapmanbird/poplar"
 
 [tool.setuptools]
 license-files = [ "LICENSE" ]
