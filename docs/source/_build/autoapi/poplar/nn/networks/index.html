@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>poplar.nn.networks &mdash; poplar 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> poplar
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">poplar</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplar.nn.networks</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/autoapi/poplar/nn/networks/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-poplar.nn.networks">
+<span id="poplar-nn-networks"></span><h1><a class="reference internal" href="#module-poplar.nn.networks" title="poplar.nn.networks"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplar.nn.networks</span></code></a><a class="headerlink" href="#module-poplar.nn.networks" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#poplar.nn.networks.LinearModel" title="poplar.nn.networks.LinearModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearModel</span></code></a></p></td>
+<td><p>LinearModel class implementing a standard multi-layer perceptron with some convenience features for function approximation use.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#poplar.nn.networks.load_model" title="poplar.nn.networks.load_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_model</span></code></a>(→ LinearModel)</p></td>
+<td><p>Load an existing <cite>LinearModel</cite> from file.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="poplar.nn.networks.LinearModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">poplar.nn.networks.</span></span><span class="sig-name descname"><span class="pre">LinearModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neurons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'model'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescaler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_activation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialisation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">xavier_uniform_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.nn.networks.LinearModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></p>
+<p>LinearModel class implementing a standard multi-layer perceptron with some convenience features for function approximation use.</p>
+<p>This is a subclass of <cite>torch.nn.Module</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_features</strong> (<em>int</em>) – Number of features for the input layer of the model.</p></li>
+<li><p><strong>out_features</strong> (<em>int</em>) – Number of features for the output layer of the model.</p></li>
+<li><p><strong>neurons</strong> (<em>list</em>) – A list containing the number of neurons in each layer of the model (excluding input/output).</p></li>
+<li><p><strong>activation</strong> (<em>Any</em>) – The activation function to be used for each hidden layer.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – A name for the model, used for file naming. Defaults to “model”.</p></li>
+<li><p><strong>device</strong> (<em>str</em><em>, </em><em>optional</em>) – pytorch device to initialise the model to, by default “cpu”</p></li>
+<li><p><strong>rescaler</strong> (<em>_type_</em><em>, </em><em>optional</em>) – An object for rescaling inputs/outputs. by default <cite>IdentityRescaler</cite> (see <cite>mlsel.nn.rescaling.py</cite> for examples)</p></li>
+<li><p><strong>out_activation</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Activation function for the output layer, by default None</p></li>
+<li><p><strong>initialisation</strong> (<em>_type_</em><em>, </em><em>optional</em>) – Function for setting the initial weights of all neurons, by default <a href="#id1"><span class="problematic" id="id2">xavier_uniform_</span></a></p></li>
+<li><p><strong>dropout</strong> (<em>float</em><em>, </em><em>optional</em>) – Sets the dropout probability for all layers, by default 0 (no dropout).</p></li>
+<li><p><strong>batch_norm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, enables batch normalisation between layers, by default False</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="poplar.nn.networks.LinearModel.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.nn.networks.LinearModel.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the output for a set of inputs, and removes extra dimensions in the output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – The input tensor to the model.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting output tensor, with no dimensions of size 1.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="poplar.nn.networks.LinearModel.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outdir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.nn.networks.LinearModel.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the model to a pickle file for reloading later.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>outdir</strong> (<em>str</em>) – Output file directory in which to place the model directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="poplar.nn.networks.LinearModel.run_on_dataset">
+<span class="sig-name descname"><span class="pre">run_on_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_batches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_distances</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.nn.networks.LinearModel.run_on_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run this model on a set of inputs, applying all necessary rescalings and transformations.</p>
+<p>If the output is distance-normalised, luminosity distances can also be provided to convert these into unnormalised values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<em>torch.Tensor</em>) – Input tensor to run through the model.</p></li>
+<li><p><strong>n_batches</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of batches to process the input data in, by default 1 (the entire dataset)</p></li>
+<li><p><strong>luminosity_distances</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – Set of luminosity distance values to multiply the output data by, by default None</p></li>
+<li><p><strong>runtime</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, returns timing statistics. By default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>output</strong> (<em>torch.Tensor</em>) – The output of the model after reversing the input scalings.</p></li>
+<li><p><strong>timings</strong> (<em>list (only returned if runtime is True)</em>) – The time taken for the network [in total, per_datapoint].</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="poplar.nn.networks.LinearModel.test_threshold_accuracy">
+<span class="sig-name descname"><span class="pre">test_threshold_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confusion_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">run_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.nn.networks.LinearModel.test_threshold_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xdata</strong> (<em>torch.Tensor</em>) – Set of input (target) data to be processed by the network.</p></li>
+<li><p><strong>ydata</strong> (<em>torch.Tensor</em>) – Set of true values to compare the network output with.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – A threshold value with which to compare the accuracy of each network when operating as a classifier (i.e. 0: below threshold, 1: above threshold)</p></li>
+<li><p><strong>confusion_matrix</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, outputs the result in confusion matrix format. By default False</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments passed to run_on_dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>accuracy</strong> (<em>double</em>) – Accuracy of the network, normalised to [0,1].</p></li>
+<li><p><strong>confmat</strong> (<em>torch.Tensor (only returned if confusion_matrix is True)</em>) – Confusion matrix of the network output over the two classes (below threshold, above threshold).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="poplar.nn.networks.load_model">
+<span class="sig-prename descclassname"><span class="pre">poplar.nn.networks.</span></span><span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#poplar.nn.networks.LinearModel" title="poplar.nn.networks.LinearModel"><span class="pre">LinearModel</span></a></span></span><a class="headerlink" href="#poplar.nn.networks.load_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an existing <cite>LinearModel</cite> from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to <cite>.pkl</cite> file to be loaded.</p></li>
+<li><p><strong>device</strong> (<em>str</em><em>, </em><em>optional</em>) – The PyTorch device to load the model to. Defaults to “cpu”.).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded LinearModel.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#poplar.nn.networks.LinearModel" title="poplar.nn.networks.LinearModel">LinearModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Christian Chapman-Bird
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

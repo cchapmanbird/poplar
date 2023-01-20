@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>poplar.utilities &mdash; poplar 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> poplar
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">poplar</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplar.utilities</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/autoapi/poplar/utilities/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-poplar.utilities">
+<span id="poplar-utilities"></span><h1><a class="reference internal" href="#module-poplar.utilities" title="poplar.utilities"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplar.utilities</span></code></a><a class="headerlink" href="#module-poplar.utilities" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#poplar.utilities.interpolate" title="poplar.utilities.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a>(→ torch.Tensor)</p></td>
+<td><p>One-dimensional linear interpolation for monotonically increasing sample</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#poplar.utilities.detection_probabilty_from_optimal_snr" title="poplar.utilities.detection_probabilty_from_optimal_snr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detection_probabilty_from_optimal_snr</span></code></a>(optimal_snr, ...)</p></td>
+<td><p>Computes detection probabilities from optimal snr values with respect to a detection threshold using the survival function of</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#poplar.utilities.selection_function_from_optimal_snr" title="poplar.utilities.selection_function_from_optimal_snr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">selection_function_from_optimal_snr</span></code></a>(optimal_snr, threshold)</p></td>
+<td><p>Computes the selection function (i.e. the mean detection probability) from a set of optimal snr values with respect to a detection threshold using the survival function of</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="poplar.utilities.interpolate">
+<span class="sig-prename descclassname"><span class="pre">poplar.utilities.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.Tensor</span></span></span><a class="headerlink" href="#poplar.utilities.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>One-dimensional linear interpolation for monotonically increasing sample
+points.</p>
+<p>Returns the one-dimensional piecewise linear interpolant to a function with
+given discrete data points <span class="math notranslate nohighlight">\((xp, fp)\)</span>, evaluated at <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>From <a class="reference external" href="https://github.com/pytorch/pytorch/issues/50334#issuecomment-1247611276">https://github.com/pytorch/pytorch/issues/50334#issuecomment-1247611276</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>torch.Tensor</em>) – the <span class="math notranslate nohighlight">\(x\)</span>-coordinates at which to evaluate the interpolated values.</p></li>
+<li><p><strong>xp</strong> (<em>torch.Tensor</em>) – the <span class="math notranslate nohighlight">\(x\)</span>-coordinates of the data points, must be increasing.</p></li>
+<li><p><strong>fp</strong> (<em>torch.Tensor</em>) – the <span class="math notranslate nohighlight">\(y\)</span>-coordinates of the data points, same length as <cite>xp</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the interpolated values, same size as <cite>x</cite></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="poplar.utilities.detection_probabilty_from_optimal_snr">
+<span class="sig-prename descclassname"><span class="pre">poplar.utilities.</span></span><span class="sig-name descname"><span class="pre">detection_probabilty_from_optimal_snr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimal_snr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union(np.ndarray,</span> <span class="pre">torch.tensor,</span> <span class="pre">float)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_detectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.utilities.detection_probabilty_from_optimal_snr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes detection probabilities from optimal snr values with respect to a detection threshold using the survival function of
+a non-central chi-square distribution.</p>
+<p>This function is not GPU-compatible and will therefore force synchronisation and movement of data between CPU and GPU.
+The outputs will be on the same device as the inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimal_snr</strong> (<em>np.ndarray</em><em> or </em><em>torch.tensor</em>) – Optimal snr values to convert into detection probabilities.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The detection threshold.</p></li>
+<li><p><strong>number_of_detectors</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of detectors in use, by default 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>detection_probabilities</strong> – The resuling detection probablities for the given detection threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray or torch.tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="poplar.utilities.selection_function_from_optimal_snr">
+<span class="sig-prename descclassname"><span class="pre">poplar.utilities.</span></span><span class="sig-name descname"><span class="pre">selection_function_from_optimal_snr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimal_snr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union(np.ndarray,</span> <span class="pre">torch.tensor)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_detectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#poplar.utilities.selection_function_from_optimal_snr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the selection function (i.e. the mean detection probability) from a set of optimal snr values with respect to a detection threshold using the survival function of
+a non-central chi-square distribution.</p>
+<p>This function is not GPU-compatible and will therefore force synchronisation and movement of data between CPU and GPU.
+The outputs will be on the same device as the inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimal_snr</strong> (<em>np.ndarray</em><em> or </em><em>torch.tensor</em>) – Optimal snr values to convert into detection probabilities.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The detection threshold.</p></li>
+<li><p><strong>number_of_detectors</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of detectors in use, by default 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>selection function</strong> – The resuling selection function for the given detection threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray or torch.tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Christian Chapman-Bird
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

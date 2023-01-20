@@ -1,0 +1,8 @@
+:orphan:
+
+:py:mod:`poplar.likelihood`
+===========================
+
+.. py:module:: poplar.likelihood
+
+

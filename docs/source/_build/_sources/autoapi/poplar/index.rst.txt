@@ -1,0 +1,8 @@
+:orphan:
+
+:py:mod:`poplar`
+================
+
+.. py:module:: poplar
+
+
