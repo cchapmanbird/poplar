@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from .plot import loss_plot
 import os
 from .networks import LinearModel
-from typing import Any
+from typing import Any, Union
 
 def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_function: Any, optimiser=None, verbose=False, plot=True, update_every=1, n_test_batches=None, save_best=False, scheduler=None, outdir='models'):
     """Train/test loop for an instance of LinearModel. This function allows for some basic monitoring of the training process, including regular loss curve plots
@@ -143,18 +143,18 @@ def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_fu
             loss_plot(train_losses, test_losses, filename=f'{outdir}/{name}/losses.png')
     model.loss_curves = [train_losses, test_losses]
 
-def train_test_split(data, ratio: int, device=None, dtype=None):
+def train_test_split(data: Union[torch.tensor, np.ndarray, list], ratio: int, device=None, dtype=None):
     """Splits `data` into two instances of `torch.tensor` with sizes of ratio `ratio` along their first axis. Also supports device
     switching and dtype casting.
 
     Parameters
     ----------
-    data : torch.tensor or numpy.ndarray
-        The data to be split.
+    data : torch.tensor, numpy.ndarray or list
+        The tensors/ndarrays (or list of tensors/ndarrays) to be split.
     ratio : int
         The ratio between the sizes of the two output tensors along their first axis.       
     device : str, optional
-        device to move tensors to, by default None
+        device to move tensors to, by default None (maintains device of inputs)
     dtype : optional
         data type of output tensors, by default None (the same dtype as the input is returned)
 
@@ -163,16 +163,33 @@ def train_test_split(data, ratio: int, device=None, dtype=None):
     list of tensors
         A list of the two split tensors.
     """
-    if device is None:
-        try:
-            device = data.device
-        except AttributeError:
-            device = "cpu"
-    if dtype is None:
-        dtype = data.dtype
-    cut_ind = int(ratio * data.shape[0])
-    data = torch.as_tensor(data, device=device, dtype=dtype)
-    train = data[:cut_ind]
-    test = data[cut_ind:]
-    return [train, test]
+
+    if isinstance(data, list):
+        out = []
+        for tensor in data:
+            cut_ind = int(ratio * tensor.shape[0])
+            if device is None:
+                try:
+                    device = tensor.device
+                except AttributeError:
+                    device = "cpu"
+            if dtype is None:
+                dtype = tensor.dtype
+            
+            tensor = torch.as_tensor(tensor, device=device, dtype=dtype)
+            out.extend([tensor[:cut_ind], tensor[cut_ind:]])
+        return out
+
+    else:
+        cut_ind = int(ratio * data.shape[0])
+        if device is None:
+            try:
+                device = data.device
+            except AttributeError:
+                device = "cpu"
+        if dtype is None:
+            dtype = data.dtype
+        
+        data = torch.as_tensor(data, device=device, dtype=dtype)
+        return data[:cut_ind], data[cut_ind:]
 
