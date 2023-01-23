@@ -2,8 +2,8 @@
 
 [build-system]
 requires = [
-  "setuptools>=61",
-  "setuptools_scm[toml]>=3.4.3",
+  "setuptools",
+  "setuptools_scm[toml]",
   "wheel",
 ]
 build-backend = "setuptools.build_meta"
@@ -34,7 +34,7 @@ classifiers = [
 ]
 
 # requirements
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 dependencies = [
   "matplotlib >=3.3.0",
   "seaborn",
@@ -57,3 +57,5 @@ dynamic = [
 
 [tool.setuptools]
 license-files = [ "LICENSE" ]
+
+[tool.setuptools_scm]
