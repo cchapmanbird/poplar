@@ -143,7 +143,7 @@ def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_fu
             loss_plot(train_losses, test_losses, filename=f'{outdir}/{name}/losses.png')
     model.loss_curves = [train_losses, test_losses]
 
-def train_test_split(data, ratio: int, device="cpu", dtype=torch.float64):
+def train_test_split(data, ratio: int, device=None, dtype=None):
     """Splits `data` into two instances of `torch.tensor` with sizes of ratio `ratio` along their first axis. Also supports device
     switching and dtype casting.
 
@@ -154,15 +154,22 @@ def train_test_split(data, ratio: int, device="cpu", dtype=torch.float64):
     ratio : int
         The ratio between the sizes of the two output tensors along their first axis.       
     device : str, optional
-        device to move tensors to, by default "cpu"
+        device to move tensors to, by default None
     dtype : optional
-        data type of output tensors, by default torch.float64
+        data type of output tensors, by default None (the same dtype as the input is returned)
 
     Returns
     -------
     list of tensors
         A list of the two split tensors.
     """
+    if device is None:
+        try:
+            device = data.device
+        except AttributeError:
+            device = "cpu"
+    if dtype is None:
+        dtype = data.dtype
     cut_ind = int(ratio * data.shape[0])
     data = torch.as_tensor(data, device=device, dtype=dtype)
     train = data[:cut_ind]

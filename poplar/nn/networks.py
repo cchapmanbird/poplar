@@ -53,12 +53,12 @@ class LinearModel(nn.Module):
         n_layers = len(neurons)
 
         layers = [nn.Linear(in_features, neurons[0]), activation()]
-        for i in range(1, n_layers-1):
+        for i in range(0, n_layers-1):
             layers.append(nn.Linear(neurons[i], neurons[i+1]))
-            if dropout is not False and i > 0:
+            if dropout:
                 layers.append(nn.Dropout(dropout))  
             layers.append(activation())
-            if batch_norm and i > 0:
+            if batch_norm:
                 layers.append(nn.BatchNorm1d(num_features=neurons[i]))
                 
         layers.append(nn.Linear(neurons[-1], out_features))
@@ -94,7 +94,7 @@ class LinearModel(nn.Module):
             A network component to be set, if it is a nn.Linear instance.
         """
         if isinstance(m, nn.Linear):
-            self.initial(m.weight)
+            self.initialisation(m.weight)
 
     def save(self, outdir: str):
         """Saves the model to a pickle file for reloading later.
