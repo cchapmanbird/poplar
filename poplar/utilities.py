@@ -37,7 +37,7 @@ def interpolate(x: torch.Tensor, xp: torch.Tensor, fp: torch.Tensor) -> torch.Te
     # idx = torch.cat([line_idx, indicies] , 0)
     return m[line_idx, indicies].mul(x) + b[line_idx, indicies]
 
-def detection_probabilty_from_optimal_snr(optimal_snr: Union(np.ndarray, torch.tensor, float), threshold: float, number_of_detectors=1):
+def detection_probabilty_from_optimal_snr(optimal_snr: Union[np.ndarray, torch.tensor, float], threshold: float, number_of_detectors=1):
     """Computes detection probabilities from optimal snr values with respect to a detection threshold using the survival function of
     a non-central chi-square distribution.
 
@@ -73,7 +73,7 @@ def detection_probabilty_from_optimal_snr(optimal_snr: Union(np.ndarray, torch.t
         probs = torch.as_tensor(probs, device=return_device)
     return probs
 
-def selection_function_from_optimal_snr(optimal_snr: Union(np.ndarray, torch.tensor), threshold: float, number_of_detectors=1):
+def selection_function_from_optimal_snr(optimal_snr: Union[np.ndarray, torch.tensor], threshold: float, number_of_detectors=1):
     """Computes the selection function (i.e. the mean detection probability) from a set of optimal snr values with respect to a detection threshold using the survival function of
     a non-central chi-square distribution.
 
