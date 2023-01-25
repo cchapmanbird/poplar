@@ -1,3 +1,7 @@
+"""
+Training routines and associated helper functions.
+"""
+
 import torch
 import numpy as np
 from sys import stdout

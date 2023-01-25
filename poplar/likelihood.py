@@ -1,6 +1,8 @@
 import torch
 import numpy as np
 
+# not currently implemented
+
 class PopulationLikelihood:
     def __init__(self, names, bounds, ppop, data, priors=None, selection_function=None, batch_size=None, device="cpu"):
         self.names = names

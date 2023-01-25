@@ -1,3 +1,7 @@
+"""
+Plotting routines for visualising network outputs and reporting training/testing diagnostics.
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 

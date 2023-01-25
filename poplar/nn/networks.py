@@ -1,3 +1,7 @@
+"""
+Network classes defined and constructed for use within `poplar`.
+"""
+
 import torch
 import torch.nn as nn
 import dill as pickle
@@ -140,10 +144,14 @@ class LinearModel(nn.Module):
             st = time.perf_counter()
 
         if n_batches > 1:
+            data_size = normalised_inputs.shape[0]
+            batch_size = data_size // n_batches
             with torch.no_grad():
                 out = []
-                for _ in range(n_batches):
-                    output = self(normalised_inputs)
+                for k in range(n_batches):
+                    special_index_low = k * batch_size
+                    special_index_high = min((k + 1) * batch_size, data_size)
+                    output = self(normalised_inputs[special_index_low:special_index_high])
                     out.append(output)
                 output = torch.cat(out)
         else:
