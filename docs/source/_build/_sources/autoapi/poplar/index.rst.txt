@@ -1,0 +1,38 @@
+:py:mod:`poplar`
+================
+
+.. py:module:: poplar
+
+.. autoapi-nested-parse::
+
+   
+   poplar is a package for modelling selection biases with machine learning, and performing hyperparameter estimation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   nn/index.rst
+
+

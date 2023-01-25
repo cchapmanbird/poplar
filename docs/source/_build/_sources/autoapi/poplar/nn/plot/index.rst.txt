@@ -1,0 +1,58 @@
+:orphan:
+
+:py:mod:`poplar.nn.plot`
+========================
+
+.. py:module:: poplar.nn.plot
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   poplar.nn.plot.loss_plot
+
+
+
+.. py:function:: loss_plot(train_losses: list, test_losses: list, filename=None)
+
+   
+   Simple plot routine for producing a loss curve
+
+
+   :Parameters:
+
+       **train_losses** : list
+           List of training data losses
+
+       **test_losses** : list
+           List of testing data losses
+
+       **filename** : str, optional
+           Output string for the loss curve figure, by default None (in which case, the figure is returned).
+
+   :Returns:
+
+       fig (only returned if filename is None)
+           The loss curve matplotlib figure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

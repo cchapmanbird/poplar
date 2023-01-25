@@ -2,14 +2,14 @@
 
 [build-system]
 requires = [
-  "setuptools>=61",
-  "setuptools_scm[toml]>=3.4.3",
+  "setuptools",
+  "setuptools_scm[toml]",
   "wheel",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mlsel"
+name = "poplar"
 description = "A python package for modelling selection effects with machine learning"
 readme = "README.md"
 authors = [
@@ -34,7 +34,7 @@ classifiers = [
 ]
 
 # requirements
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 dependencies = [
   "matplotlib >=3.3.0",
   "seaborn",
@@ -52,8 +52,10 @@ dynamic = [
 ]
 
 [project.urls]
-"Bug Tracker" = "https://github.com/CChapmanbird/ML_selection_biases/issues"
-"Source Code" = "https://github.com/CChapmanbird/ML_selection_biases"
+"Bug Tracker" = "https://github.com/CChapmanbird/poplar/issues"
+"Source Code" = "https://github.com/CChapmanbird/poplar"
 
 [tool.setuptools]
 license-files = [ "LICENSE" ]
+
+[tool.setuptools_scm]

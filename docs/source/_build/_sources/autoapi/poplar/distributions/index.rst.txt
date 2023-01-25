@@ -1,0 +1,8 @@
+:orphan:
+
+:py:mod:`poplar.distributions`
+==============================
+
+.. py:module:: poplar.distributions
+
+

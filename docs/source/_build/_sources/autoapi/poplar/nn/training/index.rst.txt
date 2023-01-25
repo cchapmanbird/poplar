@@ -1,0 +1,128 @@
+:orphan:
+
+:py:mod:`poplar.nn.training`
+============================
+
+.. py:module:: poplar.nn.training
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   poplar.nn.training.train
+   poplar.nn.training.train_test_split
+
+
+
+.. py:function:: train(model: poplar.nn.networks.LinearModel, data: list, n_epochs: int, n_batches: int, loss_function: Any, optimiser=None, verbose=False, plot=True, update_every=1, n_test_batches=None, save_best=False, scheduler=None, outdir='models')
+
+   
+   Train/test loop for an instance of LinearModel. This function allows for some basic monitoring of the training process, including regular loss curve plots
+   and a command line output indicating current progress. 
+
+   If you need more complex functionality, it is advisable to write your own training function using this as a starting point.
+
+   :Parameters:
+
+       **model** : LinearModel
+           Instance of LinearModel to be trained.
+
+       **data** : list
+           List of torch.Tensors for the training data, training labels, testing data and testing labels respectively.
+
+       **n_epochs** : int
+           Number of epochs to train for.
+
+       **n_batches** : int
+           Number of batches per epoch.
+
+       **loss_function** : Any
+           Loss function to use. It is recommended to use one of the pytorch loss functions (https://pytorch.org/docs/stable/nn.html#loss-functions)
+
+       **optimiser** : Any, optional
+           The pytorch optimiser to use, by default the Adam optimiser with a learning rate of 1e-3 is used. This should be instantiated before passing to this function.
+
+       **verbose** : bool, optional
+           If True, also displays training progress on the command line. By default False
+
+       **plot** : bool, optional
+           If True, loss curves are regularly produced (with interval update_every) and saved in the model directory, by default True
+
+       **update_every** : int, optional
+           Number of epochs between updating the saved model and plotting diagnostic data, by default 1
+
+       **n_test_batches** : int, optional
+           Number of batches to run the testing data in, by default n_batches
+
+       **save_best** : bool, optional
+           If True, saves the network that achieved the lowest validation losses, by default False
+
+       **scheduler** : Any, optional
+           pytorch scheduler to use for learning rate adjustment during training, by default None
+
+       **outdir** : str, optional
+           Output directory for the trained model directory, by default 'models'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: train_test_split(data, ratio: int, device='cpu', dtype=torch.float64)
+
+   
+   Splits `data` into two instances of `torch.tensor` with sizes of ratio `ratio` along their first axis. Also supports device
+   switching and dtype casting.
+
+
+   :Parameters:
+
+       **data** : torch.tensor or numpy.ndarray
+           The data to be split.
+
+       **ratio** : int
+           The ratio between the sizes of the two output tensors along their first axis.       
+
+       **device** : str, optional
+           device to move tensors to, by default "cpu"
+
+       **dtype** : optional
+           data type of output tensors, by default torch.float64
+
+   :Returns:
+
+       list of tensors
+           A list of the two split tensors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

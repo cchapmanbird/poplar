@@ -1,0 +1,145 @@
+:orphan:
+
+:py:mod:`poplar.utilities`
+==========================
+
+.. py:module:: poplar.utilities
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   poplar.utilities.interpolate
+   poplar.utilities.detection_probabilty_from_optimal_snr
+   poplar.utilities.selection_function_from_optimal_snr
+
+
+
+.. py:function:: interpolate(x: torch.Tensor, xp: torch.Tensor, fp: torch.Tensor) -> torch.Tensor
+
+   
+   One-dimensional linear interpolation for monotonically increasing sample
+   points.
+
+   Returns the one-dimensional piecewise linear interpolant to a function with
+   given discrete data points :math:`(xp, fp)`, evaluated at :math:`x`.
+
+   From https://github.com/pytorch/pytorch/issues/50334#issuecomment-1247611276.
+
+   :Parameters:
+
+       **x** : torch.Tensor
+           the :math:`x`-coordinates at which to evaluate the interpolated values.
+
+       **xp** : torch.Tensor
+           the :math:`x`-coordinates of the data points, must be increasing.
+
+       **fp** : torch.Tensor
+           the :math:`y`-coordinates of the data points, same length as `xp`.
+
+   :Returns:
+
+       torch.Tensor
+           the interpolated values, same size as `x`
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: detection_probabilty_from_optimal_snr(optimal_snr: Union(np.ndarray, torch.tensor, float), threshold: float, number_of_detectors=1)
+
+   
+   Computes detection probabilities from optimal snr values with respect to a detection threshold using the survival function of
+   a non-central chi-square distribution.
+
+   This function is not GPU-compatible and will therefore force synchronisation and movement of data between CPU and GPU. 
+   The outputs will be on the same device as the inputs.
+
+   :Parameters:
+
+       **optimal_snr** : np.ndarray or torch.tensor
+           Optimal snr values to convert into detection probabilities.
+
+       **threshold** : float
+           The detection threshold.
+
+       **number_of_detectors** : int, optional
+           The number of detectors in use, by default 1
+
+   :Returns:
+
+       detection_probabilities: np.ndarray or torch.tensor
+           The resuling detection probablities for the given detection threshold.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: selection_function_from_optimal_snr(optimal_snr: Union(np.ndarray, torch.tensor), threshold: float, number_of_detectors=1)
+
+   
+   Computes the selection function (i.e. the mean detection probability) from a set of optimal snr values with respect to a detection threshold using the survival function of
+   a non-central chi-square distribution.
+
+   This function is not GPU-compatible and will therefore force synchronisation and movement of data between CPU and GPU. 
+   The outputs will be on the same device as the inputs.
+
+   :Parameters:
+
+       **optimal_snr** : np.ndarray or torch.tensor
+           Optimal snr values to convert into detection probabilities.
+
+       **threshold** : float
+           The detection threshold.
+
+       **number_of_detectors** : int, optional
+           The number of detectors in use, by default 1
+
+   :Returns:
+
+       selection function: np.ndarray or torch.tensor
+           The resuling selection function for the given detection threshold.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
