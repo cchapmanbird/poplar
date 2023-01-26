@@ -11,17 +11,10 @@
     import torch
     import tqdm
     
-    %load_ext autoreload
-    %autoreload 2
-    
     device = "cuda:1"
 
-
-.. parsed-literal::
-
-    The autoreload extension is already loaded. To reload it, use:
-      %reload_ext autoreload
-
+End-to-end usage example
+========================
 
 In this example, we’re going to learn an analytic SNR function and use
 it to model selection effects for a population of gravitational wave
@@ -31,7 +24,7 @@ In reality, the SNR function is not analytic but our approach would be
 valid nonetheless.
 
 Learning signal detectability
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Firstly, let’s define an SNR function. We’re going to focus on a few
 parameters: the masses :math:`(m_1, m_2)` of the compact objects, the
@@ -66,6 +59,7 @@ Let’s define these functions and visualise the form of :math:`f`:
     Z = dummy_antenna_pattern(av, dv)
     plt.pcolormesh(av, dv, Z)
     plt.colorbar()
+    plt.show()
 
 
 
@@ -77,7 +71,7 @@ Let’s define these functions and visualise the form of :math:`f`:
 
 
 
-.. image:: end_to_end_example_files/end_to_end_example_3_1.png
+.. image:: end_to_end_example_files/end_to_end_example_4_1.png
 
 
 We’re going to consider masses in the range [1, 100] :math:`M_\odot`,
@@ -125,27 +119,6 @@ definite, we train on :math:`\log(\rho)`.
     
     model.to(device)
 
-
-
-
-.. parsed-literal::
-
-    LinearModel(
-      (layers): Sequential(
-        (0): Linear(in_features=4, out_features=128, bias=True)
-        (1): ReLU()
-        (2): Linear(in_features=128, out_features=128, bias=True)
-        (3): ReLU()
-        (4): Linear(in_features=128, out_features=128, bias=True)
-        (5): ReLU()
-        (6): Linear(in_features=128, out_features=128, bias=True)
-        (7): ReLU()
-        (8): Linear(in_features=128, out_features=1, bias=True)
-      )
-    )
-
-
-
 .. code:: ipython3
 
     train_up_to = int(0.9 * n_train)
@@ -179,7 +152,7 @@ definite, we train on :math:`\log(\rho)`.
 
 
 
-.. image:: end_to_end_example_files/end_to_end_example_10_0.png
+.. image:: end_to_end_example_files/end_to_end_example_11_0.png
 
 
 The model has trained well (but could be improved with some iterative
@@ -199,11 +172,11 @@ validation set to see how well it has trained.
 
 
 
-.. image:: end_to_end_example_files/end_to_end_example_12_0.png
+.. image:: end_to_end_example_files/end_to_end_example_13_0.png
 
 
 Estimating the Selection Function
-=================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We’re now ready to use this model to predict the detectability of a
 distribution of these events. We’ll consider a distribution where we
@@ -284,7 +257,7 @@ assume a network of two detectors was used to observe all of the events.
 
 
 
-.. image:: end_to_end_example_files/end_to_end_example_17_0.png
+.. image:: end_to_end_example_files/end_to_end_example_18_0.png
 
 
 .. code:: ipython3
@@ -375,7 +348,7 @@ detectability.
 
 
 
-.. image:: end_to_end_example_files/end_to_end_example_22_0.png
+.. image:: end_to_end_example_files/end_to_end_example_23_0.png
 
 
 .. code:: ipython3
@@ -398,7 +371,7 @@ detectability.
 
 
 
-.. image:: end_to_end_example_files/end_to_end_example_24_0.png
+.. image:: end_to_end_example_files/end_to_end_example_25_0.png
 
 
 This trained selection function network is now ready to be used in
