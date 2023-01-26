@@ -4,4 +4,4 @@
 # poplar
 Augmenting selection bias modelling with machine learning for big speedups.
 
-The methodology behind this package is introduced in [arXiv:2212.06166](https://arxiv.org/abs/2212.06166) for the specific case of modelling selection biases in extreme mass ratio inspiral (EMRI) populations. If you use this package in your work, please cite this paper *and* the code package doi.
+The methodology behind this package is introduced in [arXiv:2212.06166](https://arxiv.org/abs/2212.06166) for the specific case of modelling selection biases in extreme mass ratio inspiral (EMRI) populations. If you use this package in your work, please cite this paper **and** the code package doi.
