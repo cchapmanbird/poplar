@@ -16,3 +16,5 @@ Welcome to poplar's documentation!
 .. toctree::
    :maxdepth: 1
    :caption: Examples:
+
+   end_to_end_example
