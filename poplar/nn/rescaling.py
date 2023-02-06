@@ -73,8 +73,8 @@ class ZScoreRescaler:
 
     def to(self, device):
         for key in self.means.keys():
-            self.means[key].to(device)
-            self.stds[key].to(device)
+            self.means[key] = self.means[key].to(device)
+            self.stds[key] = self.stds[key].to(device)
 
 class UniformRescaler:
     """Rescales data to the uniform distribution with bounds [-1, 1].
@@ -116,5 +116,5 @@ class UniformRescaler:
 
     def to(self, device):
         for key in self.mins.keys():
-            self.mins[key].to(device)
-            self.maxs[key].to(device)
+            self.mins[key] = self.mins[key].to(device)
+            self.maxs[key] = self.maxs[key].to(device)
