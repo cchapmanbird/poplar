@@ -73,6 +73,7 @@ class LinearModel(nn.Module):
         self.layers.apply(self._init_weights)
 
         self.to(device)
+        self.device = device
 
     def forward(self, x: torch.Tensor):
         """Computes the output for a set of inputs, and removes extra dimensions in the output.
@@ -223,6 +224,7 @@ class LinearModel(nn.Module):
         """
         self.to(device)
         self.rescaler.to(device)
+        self.device = device
 
 def load_model(path: str, device="cpu") -> LinearModel:
     """Load an existing `LinearModel` from file.
