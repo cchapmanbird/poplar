@@ -212,6 +212,17 @@ class LinearModel(nn.Module):
             confmat[1,1] = torch.sum(torch.logical_and(out_classified==1,truth_classified==1))
 
             return (1-torch.mean(torch.abs(out_classified-truth_classified)),confmat)
+    
+    def set_device(self, device):
+        """Sets the device of both the model and its rescaler.
+
+        Parameters
+        ----------
+        device : str
+            Device to move the model and rescaler to.
+        """
+        self.to(device)
+        self.rescaler.to(device)
 
 def load_model(path: str, device="cpu") -> LinearModel:
     """Load an existing `LinearModel` from file.
@@ -230,5 +241,5 @@ def load_model(path: str, device="cpu") -> LinearModel:
     """
     with open(path, 'rb') as pickle_file:
         model = pickle.load(pickle_file)
-    model.to(device)
+    model.set_device(device)
     return model

@@ -71,6 +71,11 @@ class ZScoreRescaler:
                 out = self.yfunctions[1](out)
             return out
 
+    def to(self, device):
+        for key in self.means.keys():
+            self.means[key].to(device)
+            self.stds[key].to(device)
+
 class UniformRescaler:
     """Rescales data to the uniform distribution with bounds [-1, 1].
 
@@ -108,3 +113,8 @@ class UniformRescaler:
             if type == "y":
                 out = self.yfunctions[1](out)
             return out
+
+    def to(self, device):
+        for key in self.mins.keys():
+            self.mins[key].to(device)
+            self.maxs[key].to(device)
