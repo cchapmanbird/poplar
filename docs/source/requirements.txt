@@ -3,3 +3,4 @@ numpydoc
 sphinx-autoapi
 sphinx_rtd_theme
 sphinx_tabs
+poplar

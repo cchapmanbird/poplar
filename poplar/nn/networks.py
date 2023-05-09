@@ -10,7 +10,7 @@ from .rescaling import IdentityRescaler
 from pathlib import Path
 import time
 from typing import Union, Any
-
+import copy
 
 class LinearModel(nn.Module):
     """LinearModel class implementing a standard multi-layer perceptron with some convenience features for function approximation use. 
@@ -110,8 +110,12 @@ class LinearModel(nn.Module):
             Output file directory in which to place the model directory.
         """
         Path(f'{outdir}/{self.name}/').mkdir(parents=True, exist_ok=True)
+        # we move to the cpu for saving to ensure the model can be reloaded
+        previous_device = copy.copy(self.device)
+        self.set_device("cpu")  
         with open(f'{outdir}/{self.name}/model.pth', 'wb') as pickle_file:
             pickle.dump(self,pickle_file)
+        self.set_device(previous_device)
 
     def run_on_dataset(self, inputs: torch.Tensor, n_batches=1, luminosity_distances=None, runtime=False):
         """Run this model on a set of inputs, applying all necessary rescalings and transformations.

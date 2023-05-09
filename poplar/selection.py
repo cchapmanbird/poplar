@@ -35,7 +35,7 @@ def matched_filter_snr_from_optimal_snr(optimal_snr: Union[np.ndarray, torch.ten
         return_device = optimal_snr.device
         optimal_snr = optimal_snr.cpu().numpy()
     in_shape = optimal_snr.shape
-    matched_filter_snrs = ncx2(number_of_detectors,optimal_snr.flatten()**2).rvs(1).reshape(in_shape)
+    matched_filter_snrs = (ncx2(number_of_detectors,optimal_snr.flatten()**2).rvs(optimal_snr.size).reshape(in_shape))**0.5
 
     if return_device is not None:
         matched_filter_snrs = torch.as_tensor(matched_filter_snrs, device=return_device)

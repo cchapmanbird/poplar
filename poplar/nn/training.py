@@ -11,6 +11,7 @@ from .plot import loss_plot
 import os
 from .networks import LinearModel
 from typing import Any, Union
+import copy
 
 def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_function: Any, optimiser=None, verbose=False, plot=True, update_every=1, n_test_batches=None, save_best=False, scheduler=None, outdir='models'):
     """Train/test loop for an instance of LinearModel. This function allows for some basic monitoring of the training process, including regular loss curve plots
@@ -72,7 +73,6 @@ def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_fu
     test_losses = []
 
     datasets = {"train": [xtrain, ytrain], "test": [xtest, ytest]}
-
     lowest_loss = 1e50
     for epoch in range(n_epochs):
         # Print epoch
@@ -117,11 +117,12 @@ def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_fu
                         current_loss += loss.item()
 
                     test_losses.append(current_loss / n_test_batches)
+            
         if test_losses[-1] < lowest_loss:
             lowest_loss = test_losses[-1]
             if save_best:
-                model.save(outdir)
-        
+                best_model = copy.deepcopy(model)
+
         if scheduler is not None:
             scheduler.step()
 
@@ -136,17 +137,23 @@ def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_fu
                         loss_plot(train_losses, test_losses, filename=f'{outdir}/{name}/losses.png')
                 if not save_best:
                     model.save(outdir)
-
+                else:
+                    best_model.loss_curves = [train_losses, test_losses]
+                    best_model.save(outdir)
         
     if verbose:
         print('\nTraining complete - saving.')
     if not save_best:
+        model.loss_curves = [train_losses, test_losses]
         model.save(outdir)
+    else:
+        best_model.loss_curves = [train_losses, test_losses]
+        best_model.save(outdir)
+
     if plot:
         with plt.style.context("seaborn"):
             loss_plot(train_losses, test_losses, filename=f'{outdir}/{name}/losses.png')
-    model.loss_curves = [train_losses, test_losses]
-
+    
 def train_test_split(data: Union[torch.tensor, np.ndarray, list], ratio: int, device=None, dtype=None):
     """Splits `data` into two instances of `torch.tensor` with sizes of ratio `ratio` along their first axis. Also supports device
     switching and dtype casting.
