@@ -11,9 +11,8 @@ sphinx:
 build:
   os: ubuntu-22.04
   tools:
-    python:
-      version: 3.11
-      install:
-        - method: pip
-          path: .
-        - requirements: docs/source/requirements.txt
+    python: "3.11"
+
+python:
+  install:
+    - requirements: docs/requirements.txt
