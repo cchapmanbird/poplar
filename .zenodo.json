@@ -1,0 +1,18 @@
+{
+	"upload_type":"software",
+	"title":"poplar: Accelerating selection bias modelling with machine learning",
+	"creators": [
+		{
+			"orcid":"0000-0002-2728-9612",
+			"affiliation":"University of Glasgow",
+			"name":"Chapman-Bird, Christian"
+		}
+	],
+	"related_identifiers": [
+		{
+			"identifier":"10.1093/mnras/stad1397",
+			"relation":"isCitedBy"
+		}
+	]
+}
+	
