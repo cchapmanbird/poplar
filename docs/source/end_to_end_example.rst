@@ -5,13 +5,15 @@
     from poplar.nn.training import train, train_test_split
     from poplar.nn.rescaling import ZScoreRescaler
     from poplar.nn.plot import loss_plot
-    from poplar.selection import selection_function_from_optimal_snr
+    from poplar.selection import selection_function_from_optimal_snr, matched_filter_snr_from_optimal_snr
     import matplotlib.pyplot as plt
     import numpy as np
     import torch
     import tqdm
     
     device = "cuda:1"
+    plt.style.use('seaborn')
+    plt.rcParams['figure.figsize'] = [12,7]
 
 End-to-end usage example
 ========================
@@ -63,15 +65,7 @@ Let’s define these functions and visualise the form of :math:`f`:
 
 
 
-
-.. parsed-literal::
-
-    <matplotlib.colorbar.Colorbar at 0x7f57bae039d0>
-
-
-
-
-.. image:: end_to_end_example_files/end_to_end_example_4_1.png
+.. image:: end_to_end_example_files/end_to_end_example_4_0.png
 
 
 We’re going to consider masses in the range [1, 100] :math:`M_\odot`,
@@ -88,7 +82,7 @@ definite, we train on :math:`\log(\rho)`.
 
 .. code:: ipython3
 
-    n_train = int(1e6)  # number of training examples
+    n_train = int(2e5)  # number of training examples
     
     # sample from our priors
     m1 = np.random.uniform(1, 100, n_train)
@@ -113,11 +107,11 @@ definite, we train on :math:`\log(\rho)`.
         in_features=4,
         out_features=1,
         neurons=[128, 128, 128, 128],
-        activation=torch.nn.ReLU,
+        activation=torch.nn.SiLU,
         rescaler=rescaler
     )   
     
-    model.to(device)
+    model.set_device(device)
 
 .. code:: ipython3
 
@@ -141,14 +135,13 @@ definite, we train on :math:`\log(\rho)`.
 
 .. parsed-literal::
 
-    Epoch: 9999 | Train loss: 1.041e-02 | Test loss: 1.047e-02 (Lowest: 1.035e-02)
+    Epoch: 9999 | Train loss: 1.778e-02 | Test loss: 1.853e-02 (Lowest: 1.814e-02)
     Training complete - saving.
 
 
 .. code:: ipython3
 
-    with plt.style.context("seaborn"):
-        loss_plot(model.loss_curves[0], model.loss_curves[1])
+    _ = loss_plot(model.loss_curves[0], model.loss_curves[1])
 
 
 
@@ -165,9 +158,8 @@ validation set to see how well it has trained.
 
     ypred = model.run_on_dataset(xtest)
     
-    with plt.style.context("seaborn"):
-        plt.hist(np.log10(abs((1 - ypred/ytest).cpu().numpy())), bins='auto', density=True)
-        plt.xlabel(r'$\log_{10}(\mathrm{Percent Error})$')
+    plt.hist(np.log10(abs((1 - ypred/ytest).cpu().numpy())), bins='auto', density=True)
+    plt.xlabel(r'$\log_{10}(\mathrm{Percent Error})$')
     plt.show()
 
 
@@ -219,7 +211,7 @@ assume a network of two detectors was used to observe all of the events.
     
         def pdf(self, x):
             m1params = x['m1']
-            return self.distributions['m1'].pdf(self.data['m1'], m1params['lam'], m1params['xlow'], m1params['xhigh'])
+            return self.distributions['m1'].pdf(self.data['m1'], **m1params)
     
         def draw_samples(self, x, size):
             out = {}
@@ -249,10 +241,9 @@ assume a network of two detectors was used to observe all of the events.
 
 .. code:: ipython3
 
-    with plt.style.context("seaborn"):
-        plt.hist(np.log10(abs((1 - catalogue_snrs.cpu().numpy()/true_snrs))), bins='auto', density=True, histtype='step', lw=4)
-        plt.hist(np.log10(abs((1 - ypred/ytest).cpu().numpy())), bins='auto', density=True, histtype='step', lw=4)
-        plt.xlabel(r'$\log_{10}(\mathrm{Percent Error})$')
+    plt.hist(np.log10(abs((1 - catalogue_snrs.cpu().numpy()/true_snrs))), bins='auto', density=True, histtype='step', lw=4)
+    plt.hist(np.log10(abs((1 - ypred/ytest).cpu().numpy())), bins='auto', density=True, histtype='step', lw=4)
+    plt.xlabel(r'$\log_{10}(\mathrm{Percent Error})$')
     plt.show()
 
 
@@ -270,7 +261,7 @@ assume a network of two detectors was used to observe all of the events.
 
 .. parsed-literal::
 
-    0.20161382048296292 0.19815006956499392
+    0.20733422802864038 0.2004947033716055
 
 
 We are capable of estimating the selection function using our SNR
@@ -302,7 +293,7 @@ detectability.
 
 .. parsed-literal::
 
-    100%|██████████| 1000/1000 [02:53<00:00,  5.76it/s]
+    100%|██████████| 1000/1000 [02:25<00:00,  6.86it/s]
 
 
 .. code:: ipython3
@@ -316,18 +307,18 @@ detectability.
         1,
         1,
         [128, 128, 128],
-        activation=torch.nn.ReLU,
+        activation=torch.nn.SiLU,
         rescaler=rescaler2
     )
     
-    selection_function_model.to(device)
+    selection_function_model.set_device(device)
     
     sel_xtrain, sel_xtest, sel_ytrain, sel_ytest = train_test_split([sel_xdata, sel_ydata], 0.9)
     
     train(
         selection_function_model, 
         [sel_xtrain, sel_ytrain, sel_xtest, sel_ytest], 
-        n_epochs=1000, 
+        n_epochs=5000, 
         n_batches=1,
         optimiser = torch.optim.Adam(selection_function_model.parameters(), lr=1e-4),
         loss_function=torch.nn.L1Loss(),
@@ -337,14 +328,13 @@ detectability.
 
 .. parsed-literal::
 
-    Epoch: 999 | Train loss: 2.507e-03 | Test loss: 2.341e-03 (Lowest: 2.162e-03)
+    Epoch: 4999 | Train loss: 2.932e-03 | Test loss: 2.928e-03 (Lowest: 2.617e-03)
     Training complete - saving.
 
 
 .. code:: ipython3
 
-    with plt.style.context("seaborn"):
-        loss_plot(selection_function_model.loss_curves[0], selection_function_model.loss_curves[1])
+    _ = loss_plot(selection_function_model.loss_curves[0], selection_function_model.loss_curves[1])
 
 
 
@@ -359,14 +349,13 @@ detectability.
 .. code:: ipython3
 
     sort_inds = np.argsort(lambda_m1s)
-    with plt.style.context("seaborn"):
-        plt.plot(lambda_m1s[sort_inds], torch.as_tensor(selection_functions).numpy()[sort_inds], label='SNR network pred.')
-        plt.plot(lambda_m1s[sort_inds], np.array(true_selection_functions)[sort_inds], label='Analytic SNR SF')
-        plt.plot(lambda_m1_testvec.cpu().numpy(), sel_pred.cpu().numpy(), label='Learned SF')
-        plt.legend()
-        plt.ylabel(r'Selection function, $\alpha$')
-        plt.xlabel(r'$\lambda_{m_1}$')
-        plt.legend()
+    plt.plot(lambda_m1s[sort_inds], torch.as_tensor(selection_functions).numpy()[sort_inds], label='SNR network pred.')
+    plt.plot(lambda_m1s[sort_inds], np.array(true_selection_functions)[sort_inds], label='Analytic SNR SF')
+    plt.plot(lambda_m1_testvec.cpu().numpy(), sel_pred.cpu().numpy(), label='Learned SF')
+    plt.legend()
+    plt.ylabel(r'Selection function, $\alpha$')
+    plt.xlabel(r'$\lambda_{m_1}$')
+    plt.legend()
     plt.show()
 
 
@@ -378,4 +367,84 @@ This trained selection function network is now ready to be used in
 population inference to deliver rapid estimates of the selection
 function at low additional computational cost.
 
-TODO: Add 1d population inference example
+We can demonstrate the effectiveness of our interpolator with a
+population inference example.
+
+First, we generate a catalogue based on a set of true parameters and
+threshold it for detectability.
+
+.. code:: ipython3
+
+    n_events = 1000  # total number of events
+    true_x = {
+        "m1": {"lam": -1.5, "xlow": 1, "xhigh": 100},
+        "m2": {"lam": -2},
+        "dL": {"lam": 3},
+        "alpha": {},
+        "delta": {},
+    }
+    catalogue = popdist.draw_samples(true_x, size=n_events)
+    catalogue = {n: d.cpu().numpy() for n, d in catalogue.items()}
+    optimal_snrs = snr(**catalogue)
+    noise_realised_snrs = matched_filter_snr_from_optimal_snr(optimal_snrs, number_of_detectors=2)
+    kept_catalogue_indices = np.where(noise_realised_snrs > 20)[0]
+    kept_catalogue = {n: d[kept_catalogue_indices] for n, d in catalogue.items()}
+    popdist.data = kept_catalogue  # update the catalogue with our detections
+    Ndet = len(kept_catalogue_indices)
+    
+    f"Number of detected events: {Ndet}, NN selection function predicts ~{int(n_events*selection_function_model.run_on_dataset(true_x['m1']['lam']))}"
+
+
+
+
+.. parsed-literal::
+
+    'Number of detected events: 335, NN selection function predicts ~347'
+
+
+
+Now, we define our hierarchical likelihood. We ignore measurement
+uncertainty here and assume wide, flat priors.
+
+.. code:: ipython3
+
+    def hierarchical_likelihood(hyperparameters, Ndet, selection=False):
+        numerator = np.sum(np.log(popdist.pdf(hyperparameters).cpu().numpy()), axis=-1)  # sum the log-probabilities
+        denominator = Ndet*np.log(selection_function_model.run_on_dataset(hyperparameters['m1']['lam']).cpu().numpy()) if selection else 0
+        return numerator - denominator
+
+.. code:: ipython3
+
+    lambda_m1_grid = torch.linspace(-2, -0.3, int(1e4), device=device)[:,None]
+    ones = torch.ones_like(lambda_m1_grid, device=device)
+    trial_x = {
+        "m1": {"lam": lambda_m1_grid, "xlow": ones, "xhigh": 100*ones},
+        "m2": {"lam": -2*ones},
+        "dL": {"lam": 3*ones},
+        "alpha": {},
+        "delta": {},
+    }
+
+.. code:: ipython3
+
+    no_sf_logposterior = hierarchical_likelihood(trial_x, Ndet, selection=False)
+    sf_logposterior = hierarchical_likelihood(trial_x, Ndet, selection=True)
+    
+    plt.plot(lambda_m1_grid.cpu().numpy(), np.exp(no_sf_logposterior - no_sf_logposterior.max()), label='Selection function ignored')
+    plt.plot(lambda_m1_grid.cpu().numpy(), np.exp(sf_logposterior - sf_logposterior.max()), label='Selection function included')
+    plt.axvline(true_x['m1']['lam'], c='k', ls='--')
+    plt.ylabel(r'$\propto p(\lambda_{m_1} | \theta)$')
+    plt.xlabel(r'$\lambda_{m_1}$')
+    plt.legend()
+    plt.show()
+
+
+
+.. image:: end_to_end_example_files/end_to_end_example_32_0.png
+
+
+This demonstrates the importance of including the selection function in
+population inference, and that we can model the selection function from
+start to finish with neural networks.
+
+
