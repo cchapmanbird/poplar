@@ -31,6 +31,9 @@ class IdentityRescaler:
         if type == "y":
             out = self.yfunctions[1](data)
         return out
+    
+    def to(self, device):
+        pass
 
 class ZScoreRescaler:
     """Rescales data to the unit normal distribution.
