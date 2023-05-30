@@ -23,14 +23,14 @@ def loss_plot(train_losses: list, test_losses: list, filename=None):
         The loss curve matplotlib figure.
     """
     epochs = np.arange(len(train_losses))
-    fig = plt.figure()
-    plt.semilogy(epochs, train_losses, label='Train')
-    plt.semilogy(epochs, test_losses, label='Test')
-    plt.legend()
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
+    fig, ax = plt.subplots()
+    ax.semilogy(epochs, train_losses, label='Train')
+    ax.semilogy(epochs, test_losses, label='Test')
+    ax.legend()
+    ax.set_xlabel('Epochs')
+    ax.set_ylabel('Loss')
     if filename is not None:
-        plt.savefig(filename)
-        plt.close()
+        fig.savefig(filename)
+        plt.close(fig)
     else:
         return fig

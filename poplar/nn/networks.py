@@ -178,7 +178,10 @@ class LinearModel(nn.Module):
         return outputs
 
     def test_threshold_accuracy(self, xdata: torch.Tensor, ydata: torch.Tensor, threshold: float, confusion_matrix=False, **run_kwargs):
-        """_summary_
+        """Test the performance of the linear model when operating as a classifier (i.e. with respect to a given threshold).
+        Reports either a fractional accuracy or a confusion matrix decomposing this accuracy into its constituent parts.
+        
+        Only supported for `out_features == 1`.
 
         Parameters
         ----------
