@@ -133,26 +133,26 @@ def train(model: LinearModel, data: list, n_epochs: int, n_batches: int, loss_fu
             if not epoch % update_every:
                 model.loss_curves = [train_losses, test_losses]
                 if plot:
-                    with plt.style.context("seaborn"):
-                        loss_plot(train_losses, test_losses, filename=f'{outdir}/{name}/losses.png')
+                    with plt.style.context("seaborn-v0_8"):
+                        loss_plot(train_losses, test_losses, filename=f'{outdir}/losses_{epoch}.png')
                 if not save_best:
-                    model.save(outdir)
+                    model.save(f'{outdir}/{epoch}')
                 else:
                     best_model.loss_curves = [train_losses, test_losses]
-                    best_model.save(outdir)
+                    best_model.save(f'{outdir}/{epoch}')
         
     if verbose:
         print('\nTraining complete - saving.')
     if not save_best:
         model.loss_curves = [train_losses, test_losses]
-        model.save(outdir)
+        model.save(f'{outdir}/final_model')
     else:
         best_model.loss_curves = [train_losses, test_losses]
-        best_model.save(outdir)
+        best_model.save(f'{outdir}/best_final_model')
 
     if plot:
-        with plt.style.context("seaborn"):
-            loss_plot(train_losses, test_losses, filename=f'{outdir}/{name}/losses.png')
+        with plt.style.context("seaborn-v0_8"):
+            loss_plot(train_losses, test_losses, filename=f'{outdir}/losses_{epoch}.png')
     
 def train_test_split(data: Union[torch.tensor, np.ndarray, list], ratio: int, device=None, dtype=None):
     """Splits `data` into two instances of `torch.tensor` with sizes of ratio `ratio` along their first axis. Also supports device
