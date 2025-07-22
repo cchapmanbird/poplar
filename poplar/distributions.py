@@ -260,3 +260,62 @@ class FixedLimits_PowerLawTruncatedGaussian(Distribution):
 
         prob = hypers["k1"] * powerlaw_pdf + hypers["k2"] * Tgaussian_pdf
         return prob
+    
+class FixedLimitSchechterFunction(Distribution):
+    # https://articles.adsabs.harvard.edu/pdf/1976ApJ...203..297S
+    # https://www.astro.umd.edu/~richard/ASTRO620/LumFunction-pp.pdf
+
+    def __init__(self, limits, npoints=1000, grid_spacing='linear', device="cpu") -> None:
+        super().__init__(limits, npoints, grid_spacing, device)
+
+    def pdf(self, x, **hypers):
+
+        x = torch.as_tensor(x, device=self.device)
+
+        hypers = self._sanitise_inputs(**hypers)
+
+        xc = hypers['xc']
+
+        lam = 7
+
+        ratio = lam * x[:, :, None] / hypers['xc']
+        unnorm_prob = (lam / hypers['xc']) * ratio**lam * torch.exp(-ratio)
+
+        grid = torch.linspace(self.limits[0], self.limits[1], 1000)
+
+        ratio_grid = lam * grid / hypers['xc'][:, None]
+        prob_grid = (lam / hypers['xc'][:, None]) * ratio_grid**lam * torch.exp(-ratio_grid)
+
+        norm = torch.trapz(prob_grid, grid)
+
+        return torch.squeeze(unnorm_prob / norm)
+
+
+class FixedLimitsTruncatedSkewNormal(Distribution):
+    
+    def __init__(self, limits, npoints=1000, grid_spacing='linear', device="cpu") -> None:
+        super().__init__(limits, npoints, grid_spacing, device)
+
+    def pdf(self, x, **hypers):
+
+        x = torch.as_tensor(x, device=self.device)
+
+        hypers = self._sanitise_inputs(**hypers)
+        
+        from torch.distributions.normal import Normal
+
+        dist = Normal(hypers['mu'], hypers['sigma'])
+        torch_pdf = torch.exp(dist.log_prob(torch.tensor(x[:, :, None])))
+        torch_skew_pdf = 2 * torch_pdf * torch.distributions.Normal(0, 1).cdf(hypers['alpha'] * (torch.tensor(x[:, :, None]) - hypers['mu']) / hypers['sigma'])
+        
+        grid = torch.linspace(self.limits[0], self.limits[1], 1000)
+        torch_pdf_grid = torch.exp(dist.log_prob(torch.tensor(grid)))
+        torch_skew_pdf_grid = 2 * torch_pdf_grid * torch.distributions.Normal(0, 1).cdf(hypers['alpha'][:, None] * (torch.tensor(grid - hypers['mu'][:, None]) / hypers['sigma'][:, None]))
+
+        integral = torch.trapz(torch_skew_pdf_grid, grid)
+
+        torch_skew_pdf_normalized = torch.squeeze(torch_skew_pdf / integral)
+
+        # print(torch.trapz(torch.squeeze(torch_skew_pdf_normalized), torch.squeeze(x)))
+
+        return torch.squeeze(torch_skew_pdf_normalized)
