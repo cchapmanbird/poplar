@@ -13,7 +13,8 @@ name = "poplar"
 description = "A python package for modelling selection effects with machine learning"
 readme = "README.md"
 authors = [
-  { name = "Christian Chapman-Bird", email = "c.chapman-bird.1@research.gla.ac.uk" },
+  { name = "Christian Chapman-Bird", email = "c.chapman-bird@bham.ac.uk" },
+  { name = "Shashwat Singh", email = "s.singh.3@research.gla.ac.uk" }
 ]
 license = { text = "GPL-3.0-or-later" }
 classifiers = [
